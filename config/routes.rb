@@ -5,6 +5,12 @@ Rubyproject::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
+  #match 'users' => 'users#index'
+  match 'users/authorization' => 'users#authorization'
+  match 'users/home' => 'users#home'
+  match 'users/error' => 'users#error'
+  match 'users/register' => 'users#register'
+  match 'users/comment/postid' => 'users#comment#postid'
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
@@ -50,7 +56,7 @@ Rubyproject::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'home#index'
+   root :to => 'users#index'
 
   # See how all your routes lay out with "rake routes"
 

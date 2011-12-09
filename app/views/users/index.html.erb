@@ -1,0 +1,11 @@
+<html>
+<body>
+
+<h2>Authorization</h2>
+<%= form_tag(:controller => "users", :action => "authorization") do %>
+ <p>Username: <%= text_field_tag(:uname) %></p>
+ <p>Password: <%= text_field_tag(:pw) %></p>
+ <%= submit_tag("Go home") %>
+<% end %>
+</body>
+</html>

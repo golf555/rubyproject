@@ -1,0 +1,17 @@
+<html>
+<head>
+  <title>HiHi!</title>
+</head>
+<body>
+<h2>You have to registry:</h2>
+<%= form_tag(:controller => "users", :action => "register") do %>
+ <p>First name: <%= text_field_tag(:fname) %></p>
+ <p>Surname: <%= text_field_tag(:sname) %></p>
+ <p>Username: <%= text_field_tag(:uname) %></p>
+ <p>E-mail: <%= text_field_tag(:email) %></p>
+ <p>Password: <%= text_field_tag(:pw) %></p>
+ <%= submit_tag("Registry") %>
+ <% end %>
+ <%= @e %>
+ </body>
+</html>

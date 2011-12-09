@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+ <h1>Here's photos: </h1>
+ <hr />
+ <% for post in @pos -%>
+ <h3><%= post.title %></h3>
+ <p>
+ <%= post.postbody %>
+ <i><small><%= post.author %> at <%= post.created_at %></small></i>
+ </p>
+ <hr />
+ 
+ <% form_tag(:controller => "users", :action => "comment", :postid => @post.first.id) do -%>
+ Name: <br />
+ <%= text_field_tag :name%>
+ <br />
+ Message: <br />
+ <%= text_field_tag :bodycomment%>
+ <br />
+ <%= submit_tag "Comment" %>
+ <% end -%>
+ <% if @comm != nil %>
+ <% for com in @comm -%>
+ <p>
+ <b><%= com.name %><br /></b>
+ <%= com.bodycomment %><br />
+ <i><small>at <%= com.created_at %></small></i>
+ </p>
+ <% end %>
+ <% end %>
+ 
+ 
+ </ body>
+</html>

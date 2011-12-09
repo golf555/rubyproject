@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  postid: 1
+  name: MyString
+  bodycomment: MyString
+
+two:
+  postid: 1
+  name: MyString
+  bodycomment: MyString
