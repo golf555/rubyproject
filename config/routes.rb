@@ -7,10 +7,12 @@ Rubyproject::Application.routes.draw do
   # Sample of regular route:
   #match 'users' => 'users#index'
   match 'users/authorization' => 'users#authorization'
-  match 'users/home' => 'users#home'
+  match 'users/home/:id_user_home' => 'users#home#:id_user_home'
   match 'users/error' => 'users#error'
   match 'users/register' => 'users#register'
-  match 'users/comment/postid' => 'users#comment#postid'
+  match 'users/post/:id/:id_user_comment' => 'users#post#:id#/:id_user_comment'
+  match 'users/create_comment/:postid/:id_user_comment' => 'users#create_comment#:postid#:id_user_comment'
+  match 'users/create_post/:id_user_post' => 'users#create_post#:id_user_post'
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
