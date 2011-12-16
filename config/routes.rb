@@ -14,6 +14,7 @@ Rubyproject::Application.routes.draw do
   match 'users/create_comment/:postid/:id_user_comment' => 'users#create_comment#:postid#:id_user_comment'
   match 'users/upload/:id_user_post' => 'users#upload#:id_user_post'
   #   match 'products/:id' => 'catalog#view   /:id_user_post'
+  #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

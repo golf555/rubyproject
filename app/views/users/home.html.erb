@@ -13,7 +13,6 @@
  <hr />
  <% end %>
  <p><h2>Upload new image:</h2></p>
- 
 <%= form_tag({:controller => "users", :action => "upload", :id_user_post => @id_user_home},:multipart => true) do %>
   <p>Title:
   <%= text_field_tag :title %></p>
