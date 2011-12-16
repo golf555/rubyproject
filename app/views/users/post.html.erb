@@ -1,0 +1,30 @@
+<html>
+<head></head>
+<body>
+ <h1 class = "headers2">Here's post: </h1>
+ <hr />
+ <h3><%= @post.first.title %></h3><br />
+ <p class = "names">
+ <p><%= image_tag(@post.first.postbody, :size => "200x200") %></p><br /><br />
+ <p><i><small><%= @post.first.author %> at <%= @post.first.created_at %></small></i>
+ </p>
+ <hr />
+ <p><h2>Create new comment:</h2></p>
+ <%= form_tag(:controller => "users", :action => "create_comment", :postid => @post.first.id, :id_user_comment => @own_user) do %>
+ <p>Message:</p> 
+ <p><%= text_area_tag(:bodycomment) %></p>
+ <%= submit_tag("Comment") %>
+ <% end %>
+ <hr />
+ <% if @comm != nil %>
+ <% for com in @comm -%>
+ <p>
+ <b><%= com.name %><br /></b>
+ <%= com.bodycomment %><br />
+ <i><small>at <%= com.created_at %></small></i>
+ </p>
+ <hr />
+ <% end %>
+ <% end %>
+ </body>
+</html>

@@ -8,7 +8,7 @@ def authorization
 if @fuser.first.nil?
 redirect_to :controller => 'users', :action => 'register'
 else
-redirect_to :controller => 'users', :action => 'home'
+redirect_to :controller => 'users', :action => 'home', :id_user_home => @fuser.first.id
 end
 end
 
@@ -28,21 +28,48 @@ end
 end
 
 def home
-@pos = Post.order('id').reverse
-@comm = Comment.where('postid = ?', params[:id]).order('id').reverse
+@pos = Post.where('own_user = ?', params[:id_user_home]).order('id').reverse
+@id_user_home = params[:id_user_home]
+@us = Users.where('id = ?', @id_user_home).first.uname
 end
 
-def comment
- if params[:postid] != nil && params[:name]!= nil && params[:bodycomment]!= nil 
+def post
+ if params[:id]
+ @own_user = params[:id_user_comment]
+ @post = Post.where('id = ? and own_user = ?', params[:id], params[:id_user_comment])
+ @comm = Comment.where('postid = ?', params[:id]).order('id').reverse
+ end
+end
+
+def create_comment
+ if params[:postid] != nil && params[:bodycomment]!= nil && params[:id_user_comment] != nil
+ @us = Users.where('id = ?', params[:id_user_comment])
  @co = Comment.new
  @co.postid = params[:postid]
- @co.name = params[:name]
+ @co.name = @us.first.uname
  @co.bodycomment = params[:bodycomment]
  @co.save
- redirect_to :controller => 'users', :action => 'home', :id => params[:postid]
+ redirect_to :controller => 'users', :action => 'post', :id => params[:postid]
  else
  redirect_to :controller => 'users', :action => 'home'
  end
  end
-
+def upload
+  if params[:postbody] != nil && params[:title] != nil && params[:id_user_post] != nil 
+	@uploaded_io = params[:postbody]
+	File.open(Rails.root.join('app', 'assets','images', @uploaded_io.original_filename), 'wb') do |file|
+	  file.write(@uploaded_io.read)
+	end
+	@po = Post.new
+    @us = Users.where('id = ?', params[:id_user_post])
+    @po.author = @us.first.uname
+    @po.postbody = @uploaded_io.original_filename
+    @po.title = params[:title]
+    @po.own_user = @us.first.id
+    @po.save
+	redirect_to :controller => 'users', :action => 'home', :id_user_home => params[:id_user_post]
+  else
+  redirect_to :controller => 'users', :action => 'home', :id_user_home => params[:id_user_post]  
+  end
+end 
 end
